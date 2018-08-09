@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
+require("./models/User")
 require("./services/passport")
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds217002.mlab.com:17002/emaily-dev2')
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 
-const app = express(keys.mongoURI);
+const app = express();
 
 require("./routes/authRoutes")(app)
 
