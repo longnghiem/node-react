@@ -31,7 +31,7 @@ passport.use(
             done(err, existingUser)
           } else {
             /* new User({ googleId: profile.id}).save() */
-            User.insertOne({googleId: profile.id}, (err, user) => {
+            User.insert({googleId: profile.id}, (err, user) => {
               done(err, user)
             })
           }
