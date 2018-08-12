@@ -19,4 +19,8 @@ module.exports = (app) => {
     res.send(req.user)
   })
 
+  app.get('/test', (req, res) => {
+    res.send('this is test')
+  })
+
 }
