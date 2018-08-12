@@ -28,18 +28,13 @@ passport.use(
         User.findOne({ googleId: profile.id }, (err, existingUser)=>{
           if (err) return console.log(err)
           if (existingUser){
-            done(err, existingUser)
-          } else {
-            /* new User({ googleId: profile.id}).save() */
-            User.create({googleId: profile.id}, (err, user) => {
-              done(err, user)
-            })
-          }
+             return done(err, existingUser)
+          } 
+          User.create({googleId: profile.id}, (err, user) => {
+            done(err, user)
+          })
         })
-          
-          
-        }
-    
+      }
   )
 );
 
