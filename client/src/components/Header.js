@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import Payments from './Payments';
 
 const Header = (props) => {
   const { auth } = props;
@@ -16,11 +17,14 @@ const Header = (props) => {
           </li>
         );
       default:
-        return (
+        return [
+          <li>
+            <Payments />
+          </li>,
           <li>
             <a href="/api/logout">Logout</a>
-          </li>
-        );
+          </li>,
+        ];
     }
   };
 
@@ -30,15 +34,7 @@ const Header = (props) => {
         <NavLink to={auth ? '/surveys' : '/'} className="left brand-logo">
           Emaily
         </NavLink>
-        <ul className="right">
-          {renderContent()}
-          {/* <li>
-              <a href="badges.html">Components</a>
-            </li>
-            <li>
-              <a href="collapsible.html">JavaScript</a>
-            </li> */}
-        </ul>
+        <ul className="right">{renderContent()}</ul>
       </div>
     </nav>
   );
