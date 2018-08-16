@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
-class Header extends Component {
-  renderContent = () => {
-    const { auth } = this.props;
+const Header = (props) => {
+  const { auth } = props;
+  const renderContent = () => {
     switch (auth) {
       case null:
         return 'loading';
@@ -17,31 +18,31 @@ class Header extends Component {
       default:
         return (
           <li>
-            <a>Logout</a>
+            <a href="/api/logout">Logout</a>
           </li>
         );
     }
   };
 
-  render() {
-    return (
-      <nav>
-        <div className="nav-wrapper">
-          <a className="left brand-logo">Emaily</a>
-          <ul className="right">
-            {this.renderContent()}
-            {/* <li>
+  return (
+    <nav>
+      <div className="nav-wrapper">
+        <NavLink to={auth ? '/surveys' : '/'} className="left brand-logo">
+          Emaily
+        </NavLink>
+        <ul className="right">
+          {renderContent()}
+          {/* <li>
               <a href="badges.html">Components</a>
             </li>
             <li>
               <a href="collapsible.html">JavaScript</a>
             </li> */}
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-}
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
 Header.propTypes = {
   auth: PropTypes.shape({}),
